@@ -49,57 +49,22 @@ val screens = listOf(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GlobalWalletNavigation(
-    navController: NavHostController = rememberNavController()
+    onSignOut: () -> Unit
 ) {
+    val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
-
+    
     Scaffold(
         bottomBar = {
             NavigationBar(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(80.dp),
-                containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.8f),
-                tonalElevation = 8.dp
+                containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.8f)
             ) {
                 screens.forEach { screen ->
-                    val selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true
-                    
                     NavigationBarItem(
-                        icon = {
-                            LiquidGlassComponents.LiquidGlassIcon(
-                                icon = {
-                                    Icon(
-                                        imageVector = screen.icon,
-                                        contentDescription = screen.title,
-                                        tint = if (selected) {
-                                            MaterialTheme.colorScheme.primary
-                                        } else {
-                                            MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
-                                        }
-                                    )
-                                },
-                                modifier = Modifier.size(32.dp),
-                                gradient = if (selected) {
-                                    LiquidGlassComponents.NeonBlueGradient
-                                } else {
-                                    LiquidGlassComponents.GlassGradient
-                                }
-                            )
-                        },
-                        label = {
-                            Text(
-                                text = screen.title,
-                                style = MaterialTheme.typography.labelSmall,
-                                color = if (selected) {
-                                    MaterialTheme.colorScheme.primary
-                                } else {
-                                    MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
-                                }
-                            )
-                        },
-                        selected = selected,
+                        icon = { Icon(screen.icon, contentDescription = screen.title) },
+                        label = { Text(screen.title) },
+                        selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
                         onClick = {
                             navController.navigate(screen.route) {
                                 popUpTo(navController.graph.findStartDestination().id) {
@@ -108,23 +73,16 @@ fun GlobalWalletNavigation(
                                 launchSingleTop = true
                                 restoreState = true
                             }
-                        },
-                        colors = NavigationBarItemDefaults.colors(
-                            selectedIconColor = MaterialTheme.colorScheme.primary,
-                            selectedTextColor = MaterialTheme.colorScheme.primary,
-                            unselectedIconColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
-                            unselectedTextColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
-                            indicatorColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.3f)
-                        )
+                        }
                     )
                 }
             }
         }
-    ) { innerPadding ->
+    ) { paddingValues ->
         NavHost(
             navController = navController,
             startDestination = Screen.Dashboard.route,
-            modifier = Modifier.padding(innerPadding)
+            modifier = Modifier.padding(paddingValues)
         ) {
             composable(
                 route = Screen.Dashboard.route,
@@ -141,7 +99,7 @@ fun GlobalWalletNavigation(
                     )
                 }
             ) {
-                DashboardScreen(navController = navController)
+                DashboardScreen()
             }
             
             composable(
@@ -159,7 +117,7 @@ fun GlobalWalletNavigation(
                     )
                 }
             ) {
-                EarnScreen(navController = navController)
+                EarnScreen()
             }
             
             composable(
@@ -177,7 +135,7 @@ fun GlobalWalletNavigation(
                     )
                 }
             ) {
-                TradeScreen(navController = navController)
+                TradeScreen()
             }
             
             composable(
@@ -195,7 +153,7 @@ fun GlobalWalletNavigation(
                     )
                 }
             ) {
-                DiscoverScreen(navController = navController)
+                DiscoverScreen()
             }
             
             composable(
@@ -213,7 +171,7 @@ fun GlobalWalletNavigation(
                     )
                 }
             ) {
-                SettingsScreen(navController = navController)
+                SettingsScreen(onSignOut = onSignOut)
             }
         }
     }

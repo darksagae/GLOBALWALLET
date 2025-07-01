@@ -6,11 +6,13 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.navigation.compose.rememberNavController
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.globalwallet.app.ui.navigation.GlobalWalletNavigation
+import com.globalwallet.app.ui.screens.AuthScreen
 import com.globalwallet.app.ui.theme.GlobalWalletTheme
+import com.globalwallet.app.ui.viewmodels.AuthViewModel
 import com.globalwallet.app.data.security.SecurityManager
 import com.globalwallet.app.data.wallet.WalletManager
 import com.globalwallet.app.data.network.NetworkManager
@@ -83,7 +85,25 @@ class MainActivity : ComponentActivity() {
         initializeComponents()
         
         setContent {
-            GlobalWalletApp()
+            GlobalWalletTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    val authViewModel: AuthViewModel = hiltViewModel()
+                    val authState by authViewModel.authState.collectAsState()
+                    
+                    if (authState.isAuthenticated) {
+                        GlobalWalletNavigation(
+                            onSignOut = { authViewModel.signOut() }
+                        )
+                    } else {
+                        AuthScreen(
+                            onAuthSuccess = { /* Navigation will be handled by state change */ }
+                        )
+                    }
+                }
+            }
         }
     }
     
@@ -112,18 +132,5 @@ class MainActivity : ComponentActivity() {
         // Initialize API services
         coinGeckoApi.initialize()
         apiService.initialize()
-    }
-}
-
-@Composable
-fun GlobalWalletApp() {
-    GlobalWalletTheme {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            val navController = rememberNavController()
-            GlobalWalletNavigation(navController = navController)
-        }
     }
 } 
