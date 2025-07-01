@@ -1,0 +1,27 @@
+# Android/IntelliJ
+.gradle/
+/local.properties
+/.idea/
+.DS_Store
+/build/
+/captures/
+.externalNativeBuild/
+.cxx/
+*.iml
+*.apk
+*.ap_*
+*.db
+*.jks
+*.keystore
+*.pem
+*.key
+*.crt
+*.log
+# Sensitive
+**/secrets/
+**/keys/
+# Room/Database
+*.db
+*.db-journal
+# OS
+Thumbs.db 

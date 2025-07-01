@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.GlobalWallet" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_variant</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondaryVariant">@color/secondary_variant</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/background_dark</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <!-- Navigation bar color. -->
+        <item name="android:navigationBarColor">@color/background_dark</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <!-- Background colors. -->
+        <item name="android:colorBackground">@color/background_dark</item>
+        <item name="colorSurface">@color/surface_glass</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <!-- Text colors. -->
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <!-- Custom attributes. -->
+        <item name="colorNeonBlue">@color/neon_blue</item>
+        <item name="colorNeonPurple">@color/neon_purple</item>
+        <item name="colorNeonPink">@color/neon_pink</item>
+        <item name="colorNeonCyan">@color/neon_cyan</item>
+        <item name="colorGlassPrimary">@color/glass_primary</item>
+        <item name="colorGlassSecondary">@color/glass_secondary</item>
+        <item name="colorGlassTertiary">@color/glass_tertiary</item>
+        <item name="colorGradientStart">@color/gradient_start</item>
+        <item name="colorGradientMiddle">@color/gradient_middle</item>
+        <item name="colorGradientEnd">@color/gradient_end</item>
+    </style>
+    
+    <!-- Splash screen theme -->
+    <style name="Theme.GlobalWallet.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/background_dark</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+        <item name="postSplashScreenTheme">@style/Theme.GlobalWallet</item>
+    </style>
+    
+    <!-- Dialog theme -->
+    <style name="Theme.GlobalWallet.Dialog" parent="Theme.Material3.DayNight.Dialog">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="android:colorBackground">@color/surface_glass</item>
+        <item name="colorSurface">@color/surface_glass</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+    </style>
+    
+    <!-- Bottom sheet theme -->
+    <style name="Theme.GlobalWallet.BottomSheet" parent="Theme.Material3.DayNight.BottomSheetDialog">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="android:colorBackground">@color/surface_glass</item>
+        <item name="colorSurface">@color/surface_glass</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+    </style>
+</resources> 
