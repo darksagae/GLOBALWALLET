@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # GLOBALWALLET
 
 A futuristic, secure, and gamified multi-chain cryptocurrency wallet for Android, built with Jetpack Compose and a 3D Liquid Glass UI.
@@ -39,3 +40,6 @@ A futuristic, secure, and gamified multi-chain cryptocurrency wallet for Android
 
 ## License
 MIT
+=======
+
+>>>>>>> a750fed852cd22f2f9d2dd99dac6a59ff9e5283c
